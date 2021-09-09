@@ -4,6 +4,8 @@ import { Slate, Editable, withReact } from 'slate-react'
 import Menu from '../Menu/Menu'
 import MarkButton from '../MarkButton/MarkButton';
 import Icons from '../../Icons/Icons';
+import Element from '../Element/Element';
+import Leaf from '../Leaf/Leaf';
 
 function RichTextEditor(props) {
 
@@ -16,15 +18,9 @@ function RichTextEditor(props) {
     },
   ])
 
-  const renderElement = useCallback(props => <Element {...props} />, [])
+  const renderElement = useCallback(props => <Element {...props} />, []);
 
-
-
-  const renderLeaf = useCallback(props => {
-    return <Leaf {...props} />
-  }, [])
-
-
+  const renderLeaf = useCallback(props => <Leaf {...props} />, []);
 
   return (
     // Add a toolbar with buttons that call the same methods.
@@ -90,58 +86,9 @@ function RichTextEditor(props) {
       />
     </Slate>
   )
-
 }
-
 
 export default RichTextEditor;
-
-const Element = ({ attributes, children, element }) => {
-  switch (element.type) {
-    case 'block-quote':
-      return <blockquote {...attributes}>{children}</blockquote>
-    case 'bulleted-list':
-      return <ul {...attributes}>{children}</ul>
-    case 'code':
-      return (
-        <pre {...attributes}>
-          <code>{children}</code>
-        </pre>
-      )
-    case 'heading-one':
-      return <h1 {...attributes}>{children}</h1>
-    case 'heading-two':
-      return <h2 {...attributes}>{children}</h2>
-    case 'list-item':
-      return <li {...attributes}>{children}</li>
-    case 'numbered-list':
-      return <ol {...attributes}>{children}</ol>
-    default:
-      return <p {...attributes}>{children}</p>
-  }
-}
-
-// Define a React component to render leaves with bold text.
-const Leaf = ({ attributes, children, leaf }) => {
-  if (leaf.bold) {
-    children = <strong>{children}</strong>
-  }
-
-  if (leaf.code) {
-    children = <code>{children}</code>
-  }
-
-  if (leaf.italic) {
-    children = <em>{children}</em>
-  }
-
-  if (leaf.underline) {
-    children = <u>{children}</u>
-  }
-
-  return <span {...attributes}>{children}</span>
-}
-
 
 const CustomEditor = {
   isBoldMarkActive(editor) {
