@@ -1,0 +1,11 @@
+.menu-container{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: start;
+  background-color: lightgray;   
+  padding: 18px;
+}
+.menu-container button {
+   margin-left: 15px;
+}
