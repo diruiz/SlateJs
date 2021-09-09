@@ -71,6 +71,14 @@ function RichTextEditor(props) {
             event.preventDefault()
             CustomEditor.toggleCodeBlock(editor)
           }}>{Icons.Code}</MarkButton>
+        <MarkButton click={
+          event => {
+            event.preventDefault()
+
+            console.log(value);
+            localStorage.setItem('content', JSON.stringify(value));
+            alert("the content is saved in the local storage");
+          }}>{Icons.Save}</MarkButton>
       </Menu>
       <Editable
         editor={editor}
