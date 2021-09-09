@@ -1,6 +1,6 @@
 import './App.css';
 import { Counter } from "./Components/Counter/Counter";
-import RichTextEditor from './Components/Slate/SlateTest';
+import RichTextEditor from './Components/Slate/RichTextEditor';
 
 function App() {
   return (
