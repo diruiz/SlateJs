@@ -1,6 +1,17 @@
 .App-container {
   padding: 10px 10%;
 }
+blockquote {
+    border-left: 2px solid #ddd;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 10px;
+    color: #aaa;
+    font-style: italic;
+}
+
 code{
-  background-color: lightsteelblue;
+  background-color:#eee;
+  font-family: monospace;
+  padding: 3px;  
 }
