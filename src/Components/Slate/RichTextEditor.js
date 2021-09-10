@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { createEditor, Editor, Text, Transforms } from 'slate'
-import { Slate, Editable, withReact } from 'slate-react'
-import Menu from '../Menu/Menu'
+import { createEditor, Editor, Text, Transforms } from 'slate';
+import { withHistory } from 'slate-history';
+import { Slate, Editable, withReact } from 'slate-react';
+import Menu from '../Menu/Menu';
 import MarkButton from '../MarkButton/MarkButton';
 import Icons from '../../Icons/Icons';
 import Element from '../Element/Element';
@@ -10,7 +11,7 @@ import { isImageUrl } from '../../Utility/Tools';
 
 function RichTextEditor(props) {
 
-  const [editor] = useState(withReact(createEditor()), [])
+  const [editor] = useState(withHistory(withReact(createEditor())), [])
   //const editor = useMemo(() => withReact(createEditor()), [])
   const [value, setValue] = useState([
     {
