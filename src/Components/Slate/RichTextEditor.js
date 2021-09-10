@@ -6,6 +6,7 @@ import MarkButton from '../MarkButton/MarkButton';
 import Icons from '../../Icons/Icons';
 import Element from '../Element/Element';
 import Leaf from '../Leaf/Leaf';
+import { isImageUrl } from '../../Utility/Tools';
 
 function RichTextEditor(props) {
 
@@ -48,8 +49,16 @@ function RichTextEditor(props) {
           }}>{Icons.Code}</MarkButton>
         <MarkButton click={
           event => {
+            const url = window.prompt('Enter the URL of the image:')
+            if (url && !isImageUrl(url)) {
+              alert('URL is not an image')
+              return
+            }
+            //insertImage(editor, url)
+          }}>{Icons.Image}</MarkButton>
+        <MarkButton click={
+          event => {
             event.preventDefault()
-
             console.log(value);
             localStorage.setItem('content', JSON.stringify(value));
             alert("the content is saved in the local storage");
