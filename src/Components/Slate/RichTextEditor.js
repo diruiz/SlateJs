@@ -8,6 +8,7 @@ import Icons from '../../Icons/Icons';
 import Element from '../Element/Element';
 import Leaf from '../Leaf/Leaf';
 import { isImageUrl } from '../../Utility/Tools';
+import BlockButton from '../BlockButton/BlockButton';
 
 function RichTextEditor(props) {
 
@@ -59,6 +60,7 @@ function RichTextEditor(props) {
             localStorage.setItem('content', JSON.stringify(value));
             alert("the content is saved in the local storage");
           }}>{Icons.Save}</MarkButton>
+        <BlockButton>{Icons.Quote}</BlockButton>
       </Menu>
       <Editable
         editor={editor}
