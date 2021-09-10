@@ -54,7 +54,7 @@ function RichTextEditor(props) {
               alert('URL is not an image')
               return
             }
-            //insertImage(editor, url)
+            insertImage(editor, url)
           }}>{Icons.Image}</MarkButton>
         <MarkButton click={
           event => {
@@ -98,6 +98,12 @@ function RichTextEditor(props) {
 }
 
 export default RichTextEditor;
+
+const insertImage = (editor, url) => {
+  const text = { text: '' }
+  const image = { type: 'image', url, children: [text] }
+  Transforms.insertNodes(editor, image)
+}
 
 const CustomEditor = {
   isBoldMarkActive(editor) {
