@@ -53,6 +53,11 @@ function RichTextEditor(props) {
             }
             insertImage(editor, url)
           }}>{Icons.Image}</MarkButton>
+
+        <BlockButton format="block-quote" >{Icons.Quote}</BlockButton>
+        <BlockButton format="numbered-list" >{Icons.OrderedList}</BlockButton>
+        <BlockButton format="bulleted-list" >{Icons.UnorderedList}</BlockButton>
+
         <MarkButton click={
           event => {
             event.preventDefault()
@@ -60,9 +65,9 @@ function RichTextEditor(props) {
             localStorage.setItem('content', JSON.stringify(value));
             alert("the content is saved in the local storage");
           }}>{Icons.Save}</MarkButton>
-        <BlockButton>{Icons.Quote}</BlockButton>
       </Menu>
       <Editable
+
         editor={editor}
         renderElement={renderElement}
         renderLeaf={renderLeaf}
