@@ -54,6 +54,8 @@ function RichTextEditor(props) {
             insertImage(editor, url)
           }}>{Icons.Image}</MarkButton>
 
+        <BlockButton format="heading-one" >T</BlockButton>
+        <BlockButton format="heading-two" >S</BlockButton>
         <BlockButton format="block-quote" >{Icons.Quote}</BlockButton>
         <BlockButton format="numbered-list" >{Icons.OrderedList}</BlockButton>
         <BlockButton format="bulleted-list" >{Icons.UnorderedList}</BlockButton>
