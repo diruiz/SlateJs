@@ -15,3 +15,9 @@ code{
   font-family: monospace;
   padding: 3px;  
 }
+
+img{
+  width: 60%;
+  margin: 0px auto;
+  display: block;
+}
