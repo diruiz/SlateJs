@@ -24,22 +24,22 @@ function RichTextEditor(props) {
     // Add a toolbar with buttons that call the same methods.
     <Slate editor={editor} value={value} onChange={value => setValue(value)}>
       <Menu>
-        <MarkButton click={
+        <MarkButton format="bold" click={
           event => {
             event.preventDefault()
             CustomEditor.toggleBoldMark(editor)
           }}>{Icons.Bold}</MarkButton>
-        <MarkButton click={
+        <MarkButton format="italic" click={
           event => {
             event.preventDefault()
             CustomEditor.toggleItalicMark(editor)
           }}>{Icons.Italic}</MarkButton>
-        <MarkButton click={
+        <MarkButton format="underline" click={
           event => {
             event.preventDefault()
             CustomEditor.toggleUnderlineMark(editor)
           }}>{Icons.Underline}</MarkButton>
-        <MarkButton click={
+        <MarkButton format="code" click={
           event => {
             event.preventDefault()
             CustomEditor.toggleCodeBlock(editor)
