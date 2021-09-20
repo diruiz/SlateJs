@@ -4,3 +4,11 @@
   max-width: 100%;
   max-height: 20em;
 }
+
+.iframe-style{
+  display: block;
+  max-width: 100%;
+  max-height: 20em;
+  width: "560px";
+  height:"315px";
+}

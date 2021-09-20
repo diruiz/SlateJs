@@ -7,7 +7,7 @@ import MarkButton from '../MarkButton/MarkButton';
 import Icons from '../../Icons/Icons';
 import Element from '../Element/Element';
 import Leaf from '../Leaf/Leaf';
-import { isImageUrl } from '../../Utility/Tools';
+import { isImageUrl, isUrl } from '../../Utility/Tools';
 import BlockButton from '../BlockButton/BlockButton';
 
 function RichTextEditor(props) {
@@ -53,6 +53,16 @@ function RichTextEditor(props) {
             }
             insertImage(editor, url)
           }}>{Icons.Image}</MarkButton>
+
+        <MarkButton click={
+          event => {
+            const url = window.prompt('Enter the URL of the video:')
+            if (url && !isUrl(url)) {
+              alert('URL is not an url')
+              return
+            }
+            insertVideo(editor, url)
+          }}>{Icons.Video}</MarkButton>
 
         <BlockButton format="heading-one" >T</BlockButton>
         <BlockButton format="heading-two" >S</BlockButton>
@@ -142,6 +152,12 @@ const withImages = editor => {
 const insertImage = (editor, url) => {
   const text = { text: '' }
   const image = { type: 'image', url, children: [text] }
+  Transforms.insertNodes(editor, image)
+}
+
+const insertVideo = (editor, url) => {
+  const text = { text: '' }
+  const image = { type: 'iframe', url, children: [text] }
   Transforms.insertNodes(editor, image)
 }
 

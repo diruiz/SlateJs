@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBold, faCode, faImage, faItalic, faListOl, faListUl, faQuoteRight, faSave, faUnderline } from '@fortawesome/free-solid-svg-icons'
+import { faBold, faCode, faImage, faItalic, faListOl, faListUl, faQuoteRight, faSave, faUnderline, faVideo } from '@fortawesome/free-solid-svg-icons'
 
 const Icons = {
   Bold: <FontAwesomeIcon icon={faBold} />,
@@ -11,7 +11,7 @@ const Icons = {
   Save: <FontAwesomeIcon icon={faSave} />,
   Underline: <FontAwesomeIcon icon={faUnderline} />,
   UnorderedList: <FontAwesomeIcon icon={faListUl} />,
-
+  Video: <FontAwesomeIcon icon={faVideo} />,
 }
 
 export default Icons;

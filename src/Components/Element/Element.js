@@ -17,6 +17,8 @@ const Element = (props) => {
       return <h1 {...attributes}>{children}</h1>
     case 'heading-two':
       return <h2 {...attributes}>{children}</h2>
+    case 'iframe':
+      return <Video {...props} />
     case 'image':
       return <Image {...props} />
     case 'list-item':
@@ -37,6 +39,25 @@ const Image = ({ attributes, children, element }) => {
         <img
           src={element.url}
           className="image-style"
+          style={{
+            boxShadow: selected && focused ? '0 0 0 3px #B4D5FF' : 'none'
+          }}
+        />
+      </div>
+      {children}
+    </div>
+  )
+}
+
+const Video = ({ attributes, children, element }) => {
+  const selected = useSelected()
+  const focused = useFocused()
+  return (
+    <div {...attributes}>
+      <div contentEditable={false}>
+        <iframe
+          src={element.url}
+          className="iframe-style"
           style={{
             boxShadow: selected && focused ? '0 0 0 3px #B4D5FF' : 'none'
           }}
