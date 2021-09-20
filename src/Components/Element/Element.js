@@ -61,6 +61,9 @@ const Video = ({ attributes, children, element }) => {
           style={{
             boxShadow: selected && focused ? '0 0 0 3px #B4D5FF' : 'none'
           }}
+          width="560"
+          height="315"
+          allowfullscreen="true"
         />
       </div>
       {children}
