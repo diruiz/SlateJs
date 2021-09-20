@@ -1,11 +1,6 @@
 import './MarkButton.css';
-import {
-  Editor,
-  Transforms,
-  Element as SlateElement,
-} from 'slate'
+import { Editor } from 'slate';
 import { useSlate } from "slate-react";
-
 
 function MarkButton(props) {
   const editor = useSlate();
