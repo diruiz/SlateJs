@@ -9,6 +9,7 @@ import Element from '../Element/Element';
 import Leaf from '../Leaf/Leaf';
 import { isImageUrl, isUrl } from '../../Utility/Tools';
 import BlockButton from '../BlockButton/BlockButton';
+import { addArticle } from '../../Services/Article.services';
 
 function RichTextEditor(props) {
 
@@ -73,9 +74,22 @@ function RichTextEditor(props) {
         <MarkButton click={
           event => {
             event.preventDefault()
-            console.log(value);
-            localStorage.setItem('content', JSON.stringify(value));
-            alert("the content is saved in the local storage");
+            let articleName = prompt("Seleccione el nombre del articulo");
+            if (articleName) {
+              const article = { country: 'AR', name: articleName, cdsContent: '', content: value };
+              console.log(article);
+              addArticle(article)
+                .then(data => {
+                  console.log("data ok: ", data)
+
+                })
+                .catch(error => alert("error: " + alert.toString()));
+
+            }
+            else {
+              alert('no ingreso nombre');
+            }
+
           }}>{Icons.Save}</MarkButton>
       </Menu>
       <Editable
