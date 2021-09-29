@@ -40,11 +40,11 @@ function RichTextEditor(props) {
             event.preventDefault()
             CustomEditor.toggleUnderlineMark(editor)
           }}>{Icons.Underline}</MarkButton>
-        <MarkButton format="code" click={
+        {/* <MarkButton format="code" click={
           event => {
             event.preventDefault()
             CustomEditor.toggleCodeBlock(editor)
-          }}>{Icons.Code}</MarkButton>
+          }}>{Icons.Code}</MarkButton> */}
         <MarkButton click={
           event => {
             const url = window.prompt('Enter the URL of the image:')
@@ -67,9 +67,9 @@ function RichTextEditor(props) {
 
         <BlockButton format="heading-one" >T</BlockButton>
         <BlockButton format="heading-two" >S</BlockButton>
-        <BlockButton format="block-quote" >{Icons.Quote}</BlockButton>
+        {/* <BlockButton format="block-quote" >{Icons.Quote}</BlockButton>
         <BlockButton format="numbered-list" >{Icons.OrderedList}</BlockButton>
-        <BlockButton format="bulleted-list" >{Icons.UnorderedList}</BlockButton>
+        <BlockButton format="bulleted-list" >{Icons.UnorderedList}</BlockButton> */}
 
         <MarkButton click={
           event => {
@@ -81,6 +81,7 @@ function RichTextEditor(props) {
               addArticle(article)
                 .then(data => {
                   console.log("data ok: ", data)
+                  alert("articulo guardado correctamente");
 
                 })
                 .catch(error => alert("error: " + alert.toString()));
@@ -256,7 +257,7 @@ const initialValue = [
       { text: ' text, ' },
       { text: 'much', italic: true },
       { text: ' better than a ' },
-      { text: '<textarea>', code: true },
+      { text: '<textarea>', underline: true },
       { text: '!' },
     ],
   },
@@ -277,14 +278,11 @@ const initialValue = [
       { text: 'bold', bold: true },
       {
         text:
-          ', or add a semantically rendered block quote in the middle of the page, like this:',
+          ', or add a semantically rendered block quote in the middle of the page.',
       },
     ],
   },
-  {
-    type: 'block-quote',
-    children: [{ text: 'A wise quote.' }],
-  },
+
   {
     type: 'paragraph',
     children: [{ text: 'Try it out for yourself!' }],
