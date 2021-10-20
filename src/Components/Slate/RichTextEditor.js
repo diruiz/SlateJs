@@ -10,10 +10,11 @@ import Leaf from '../Leaf/Leaf';
 import { isImageUrl, isUrl } from '../../Utility/Tools';
 import BlockButton from '../BlockButton/BlockButton';
 import { addArticle } from '../../Services/Article.services';
+import LinkButton, { wrapLink } from '../LinkButton/LinkButton';
 
 function RichTextEditor(props) {
 
-  const [editor] = useState(withImages(withHistory(withReact(createEditor()))), [])
+  const [editor] = useState(withLinks(withImages(withHistory(withReact(createEditor())))), [])
   //const editor = useMemo(() => withReact(createEditor()), [])
   const [value, setValue] = useState(initialValue);
 
@@ -70,6 +71,7 @@ function RichTextEditor(props) {
         {/* <BlockButton format="block-quote" >{Icons.Quote}</BlockButton>
         <BlockButton format="numbered-list" >{Icons.OrderedList}</BlockButton>
         <BlockButton format="bulleted-list" >{Icons.UnorderedList}</BlockButton> */}
+        <LinkButton>{Icons.Link}</LinkButton>
 
         <MarkButton click={
           event => {
@@ -92,6 +94,35 @@ function RichTextEditor(props) {
             }
 
           }}>{Icons.Save}</MarkButton>
+
+        <MarkButton click={
+          event => {
+            event.preventDefault()
+            var requestOptions = {
+              method: 'GET',
+              redirect: 'follow'
+            };
+
+            fetch("https://beta.directv.com.co/coverage/Cds/Article/AEM", requestOptions)
+              .then(response => {
+                if (response.ok) {
+                  response.text();
+                }
+                else {
+                  throw ("Error")
+                }
+
+              })
+              .then(result => {
+                console.log(result);
+                alert("enviado correctamente")
+              })
+              .catch(error => {
+                console.log('error', error)
+                alert("Error enviando")
+              });
+
+          }}>Enviar a AEM</MarkButton>
       </Menu>
       <Editable
 
@@ -163,17 +194,45 @@ const withImages = editor => {
   return editor;
 }
 
+const withLinks = editor => {
+  const { insertData, insertText, isInline } = editor
+
+  editor.isInline = element => {
+    return element.type === 'link' ? true : isInline(element)
+  }
+
+  editor.insertText = text => {
+    if (text && isUrl(text)) {
+      wrapLink(editor, text)
+    } else {
+      insertText(text)
+    }
+  }
+
+  editor.insertData = data => {
+    const text = data.getData('text/plain')
+
+    if (text && isUrl(text)) {
+      wrapLink(editor, text)
+    } else {
+      insertData(data)
+    }
+  }
+
+  return editor
+}
+
 
 const insertImage = (editor, url) => {
-  const text = { text: '' }
+  const text = { text: '' };
   const image = { type: 'image', url, children: [text] }
   Transforms.insertNodes(editor, image)
 }
 
 const insertVideo = (editor, url) => {
-  const text = { text: '' }
+  const text = { text: '' };
   const image = { type: 'iframe', url, children: [text] }
-  Transforms.insertNodes(editor, image)
+  Transforms.insertNodes(editor, image);
 }
 
 const CustomEditor = {

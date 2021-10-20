@@ -1,0 +1,122 @@
+{
+  "name": "extra",
+  "country": "CO",
+  "tags": [
+    "Prepago",
+    "Postpago",
+    "Facturacion"
+  ],
+  "content": [
+    {
+      "type": "heading-one",
+      "value": "texto titulo 1"
+    },
+    {
+      "type": "heading-two",
+      "value": "texto titulo 2"
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "text": "Si ves el error:"
+        },
+        {
+          "text": "Si ves el error:",
+          "bold": true
+        },
+        {
+          "text": "Si ves el error:",
+          "bold": true
+        }
+      ]
+    },
+    {
+      "type": "viñeta-numerica",
+      "value": [
+        "Texto 1",
+        "Texto 2",
+        "Texto n"
+      ]
+    },
+    {
+      "type": "viñeta-grafica",
+      "value": [
+        "Texto 1",
+        "Texto 2",
+        "Txto n"
+      ]
+    },
+    {
+      "type": "image",
+      "value": "Alternative text",
+      "src1": "https://screenrant.com/funniest-disney-movies-ranked/image.png",
+      "src2": "https://screenrant.com/funniest-disney-movies-ranked/image.png",
+    },
+    {
+      "type": "image",
+      "value": [
+        {
+          "alt": "Alternative text"
+        },
+        {
+          "src1": "https://screenrant.com/funniest-disney-movies-ranked/image.png"
+        },
+        {
+          "src2": "https://screenrant.com/funniest-disney-movies-ranked/image.png"
+        }
+      ]
+    },
+    {
+      "type": "dropdown/accordion",
+      "value": "Recibo mi factura por correo",
+      "src1": "https://mi-icono.jpg",
+      "src2": "",
+      "content": [
+        {
+          "type": "heading-one",
+          "value": "texto titulo 1"
+        },
+        {
+          "type": "heading-two",
+          "value": "texto titulo 2"
+        }
+      ]
+    },
+    {
+      "type": "dropdown/accordion",
+      "value": [
+        {
+          "title": "Recibo mi factura por correo",
+          "src1": "https://mi-icono.jpg",
+          "src2": "",
+          "content": [
+            {
+              "type": "heading-one",
+              "value": "texto titulo 1"
+            },
+            {
+              "type": "heading-two",
+              "value": "texto titulo 2"
+            }
+          ]
+        },
+        {
+          "title": "Recibo mi factura por email",
+          "src1": "https://mi-icono.jpg",
+          "src2": "",
+          "content": [
+            {
+              "type": "heading-one",
+              "value": "texto titulo 1"
+            },
+            {
+              "type": "heading-two",
+              "value": "texto titulo 2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

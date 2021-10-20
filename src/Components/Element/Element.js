@@ -21,6 +21,12 @@ const Element = (props) => {
       return <Video {...props} />
     case 'image':
       return <Image {...props} />
+    case 'link':
+      return (
+        <a {...attributes} href={element.url}>
+          {children}
+        </a>
+      )
     case 'list-item':
       return <li {...attributes}>{children}</li>
     case 'numbered-list':
