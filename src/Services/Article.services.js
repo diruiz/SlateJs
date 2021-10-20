@@ -1,6 +1,5 @@
 import { mainUrl } from "../Utility/helper";
 
-
 export const addArticle = async (article) => {
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
