@@ -1,2 +1,2 @@
-export const mainUrl = 'http://localhost:57753/';
+export const mainUrl = 'https://localhost:44383/';
 

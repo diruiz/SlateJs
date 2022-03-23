@@ -24,137 +24,149 @@ function RichTextEditor(props) {
 
   return (
     // Add a toolbar with buttons that call the same methods.
-    <Slate editor={editor} value={value} onChange={value => setValue(value)}>
-      <Menu>
-        <MarkButton format="bold" click={
-          event => {
-            event.preventDefault()
-            CustomEditor.toggleBoldMark(editor)
-          }}>{Icons.Bold}</MarkButton>
-        <MarkButton format="italic" click={
-          event => {
-            event.preventDefault()
-            CustomEditor.toggleItalicMark(editor)
-          }}>{Icons.Italic}</MarkButton>
-        <MarkButton format="underline" click={
-          event => {
-            event.preventDefault()
-            CustomEditor.toggleUnderlineMark(editor)
-          }}>{Icons.Underline}</MarkButton>
-        {/* <MarkButton format="code" click={
+    <>
+      Titulo: <input type="text"></input>
+      <Slate editor={editor} value={value} onChange={value => setValue(value)}>
+        <Menu>
+          <MarkButton format="bold" click={
+            event => {
+              event.preventDefault()
+              CustomEditor.toggleBoldMark(editor)
+            }}>{Icons.Bold}</MarkButton>
+          <MarkButton format="italic" click={
+            event => {
+              event.preventDefault()
+              CustomEditor.toggleItalicMark(editor)
+            }}>{Icons.Italic}</MarkButton>
+          <MarkButton format="underline" click={
+            event => {
+              event.preventDefault()
+              CustomEditor.toggleUnderlineMark(editor)
+            }}>{Icons.Underline}</MarkButton>
+          {/* <MarkButton format="code" click={
           event => {
             event.preventDefault()
             CustomEditor.toggleCodeBlock(editor)
           }}>{Icons.Code}</MarkButton> */}
-        <MarkButton click={
-          event => {
-            const url = window.prompt('Enter the URL of the image:')
-            if (url && !isImageUrl(url)) {
-              alert('URL is not an image')
-              return
-            }
-            insertImage(editor, url)
-          }}>{Icons.Image}</MarkButton>
+          <MarkButton click={
+            event => {
+              const url = window.prompt('Enter the URL of the image:')
+              if (url && !isImageUrl(url)) {
+                alert('URL is not an image')
+                return
+              }
+              insertImage(editor, url)
+            }}>{Icons.Image}</MarkButton>
 
-        <MarkButton click={
-          event => {
-            const url = window.prompt('Enter the URL of the video:')
-            if (url && !isUrl(url)) {
-              alert('URL is not an url')
-              return
-            }
-            insertVideo(editor, url)
-          }}>{Icons.Video}</MarkButton>
+          <MarkButton click={
+            event => {
+              const url = window.prompt('Enter the URL of the video:')
+              if (url && !isUrl(url)) {
+                alert('URL is not an url')
+                return
+              }
+              insertVideo(editor, url)
+            }}>{Icons.Video}</MarkButton>
+           <MarkButton click={
+            event => {
+              const msg = window.prompt('Enter the message:')
+              if (!msg) {
+                alert('URL is not an nessage')
+                return
+              }
+              insertNote(editor, msg,'titulo quemado')
+            }}>Nota</MarkButton>
+         
+          <BlockButton format="heading-one" >T</BlockButton>
+          <BlockButton format="heading-two" >S</BlockButton>
+          {/* <BlockButton format="block-quote" >{Icons.Quote}</BlockButton>
+        <BlockButton format="numbered-list" >{Icons.OrderedList}</BlockButton> */}
+          <BlockButton format="bulleted-list" >{Icons.UnorderedList}</BlockButton>
+          <LinkButton>{Icons.Link}</LinkButton>
 
-        <BlockButton format="heading-one" >T</BlockButton>
-        <BlockButton format="heading-two" >S</BlockButton>
-        {/* <BlockButton format="block-quote" >{Icons.Quote}</BlockButton>
-        <BlockButton format="numbered-list" >{Icons.OrderedList}</BlockButton>
-        <BlockButton format="bulleted-list" >{Icons.UnorderedList}</BlockButton> */}
-        <LinkButton>{Icons.Link}</LinkButton>
+          <MarkButton click={
+            event => {
+              event.preventDefault()
+              let articleName = prompt("Seleccione el nombre del articulo");
+              if (articleName) {
+                const article = { country: 'AR', name: articleName, title:articleName, description:"description" , content: value };
+                console.log(article);
+                addArticle(article)
+                  .then(data => {
+                    console.log("data ok: ", data)
+                    alert("articulo guardado correctamente");
 
-        <MarkButton click={
-          event => {
-            event.preventDefault()
-            let articleName = prompt("Seleccione el nombre del articulo");
-            if (articleName) {
-              const article = { country: 'AR', name: articleName, cdsContent: '', content: value };
-              console.log(article);
-              addArticle(article)
-                .then(data => {
-                  console.log("data ok: ", data)
-                  alert("articulo guardado correctamente");
+                  })
+                  .catch(error => alert("error: " + alert.toString()));
+
+              }
+              else {
+                alert('no ingreso nombre');
+              }
+
+            }}>{Icons.Save}</MarkButton>
+
+          <MarkButton click={
+            event => {
+              event.preventDefault()
+              var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+
+              fetch("https://beta.directv.com.co/coverage/Cds/Article/AEM", requestOptions)
+                .then(response => {
+                  if (response.ok) {
+                    response.text();
+                  }
+                  else {
+                    throw ("Error")
+                  }
 
                 })
-                .catch(error => alert("error: " + alert.toString()));
+                .then(result => {
+                  console.log(result);
+                  alert("enviado correctamente")
+                })
+                .catch(error => {
+                  console.log('error', error)
+                  alert("Error enviando")
+                });
 
-            }
-            else {
-              alert('no ingreso nombre');
-            }
+            }}>Enviar a AEM</MarkButton>
+        </Menu>
+        <Editable
 
-          }}>{Icons.Save}</MarkButton>
-
-        <MarkButton click={
-          event => {
-            event.preventDefault()
-            var requestOptions = {
-              method: 'GET',
-              redirect: 'follow'
-            };
-
-            fetch("https://beta.directv.com.co/coverage/Cds/Article/AEM", requestOptions)
-              .then(response => {
-                if (response.ok) {
-                  response.text();
-                }
-                else {
-                  throw ("Error")
-                }
-
-              })
-              .then(result => {
-                console.log(result);
-                alert("enviado correctamente")
-              })
-              .catch(error => {
-                console.log('error', error)
-                alert("Error enviando")
-              });
-
-          }}>Enviar a AEM</MarkButton>
-      </Menu>
-      <Editable
-
-        editor={editor}
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        onKeyDown={event => {
-          console.log(value);
-          const content = JSON.stringify(value)
-          localStorage.setItem('content', content)
-          if (!event.ctrlKey) {
-            return
-          }
-
-          switch (event.key) {
-            case '`': {
-              event.preventDefault()
-              CustomEditor.toggleCodeBlock(editor)
-              break
+          editor={editor}
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          onKeyDown={event => {
+            console.log(value);
+            const content = JSON.stringify(value)
+            localStorage.setItem('content', content)
+            if (!event.ctrlKey) {
+              return
             }
 
-            case 'b': {
-              event.preventDefault()
-              CustomEditor.toggleBoldMark(editor)
-              break
+            switch (event.key) {
+              case '`': {
+                event.preventDefault()
+                CustomEditor.toggleCodeBlock(editor)
+                break
+              }
+
+              case 'b': {
+                event.preventDefault()
+                CustomEditor.toggleBoldMark(editor)
+                break
+              }
             }
-          }
 
 
-        }}
-      />
-    </Slate>
+          }}
+        />
+      </Slate>
+    </>
   )
 }
 
@@ -223,15 +235,22 @@ const withLinks = editor => {
 }
 
 
-const insertImage = (editor, url) => {
+const insertImage = (editor, url_desktop) => {
   const text = { text: '' };
-  const image = { type: 'image', url, children: [text] }
+  const image = { type: 'image', url_desktop, children: [text] }
   Transforms.insertNodes(editor, image)
 }
+
+
 
 const insertVideo = (editor, url) => {
   const text = { text: '' };
   const image = { type: 'iframe', url, children: [text] }
+  Transforms.insertNodes(editor, image);
+}
+const insertNote = (editor, prueba_text, title) => {
+  const text = { text: '' };
+  const image = { type: 'note2', prueba_text, title, children: [text] }
   Transforms.insertNodes(editor, image);
 }
 
@@ -321,7 +340,7 @@ const initialValue = [
     ],
   },
   {
-    type: 'h2',
+    type: 'heading-two',
     children: [
       { text: 'Titulo' },
 
